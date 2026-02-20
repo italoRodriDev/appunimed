@@ -83,26 +83,37 @@ class HomePage extends GetView<HomeController> {
               /// Header
               Padding(
                 padding: const EdgeInsets.all(10),
-                child: Row(
-                  children: [
-                    AvatarAppComponent(imageUrl: 'assets/images/avatar.png'),
-                    const SizedBox(width: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextAppComponent(
-                          value: 'Italo R. Santos',
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.pantone7722C,
-                          fontSize: 22,
-                        ),
-                        TextAppComponent(
-                          value: 'Ver meu plano',
-                          color: AppColor.pantone382C,
-                        ),
-                      ],
-                    ),
-                  ],
+                child: ValueListenableBuilder(
+                  valueListenable: controller.dataProfile,
+                  builder: (context, data, child) {
+                    if (data != null) {
+                      return Row(
+                        children: [
+                          AvatarAppComponent(
+                            imageUrl: 'assets/images/avatar.png',
+                          ),
+                          const SizedBox(width: 8),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              TextAppComponent(
+                                value:
+                                    'Olá, ${data.nome.length > 15 ? data.nome.split(' ')[0] : data.nome}',
+                                fontWeight: FontWeight.w600,
+                                color: AppColor.pantone7722C,
+                                fontSize: 22,
+                              ),
+                              TextAppComponent(
+                                value: 'Ver meu plano',
+                                color: AppColor.pantone382C,
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    }
+                    return Container();
+                  },
                 ),
               ),
 

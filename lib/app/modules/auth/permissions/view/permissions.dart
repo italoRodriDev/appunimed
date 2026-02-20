@@ -41,7 +41,10 @@ class PermissionsPage extends GetView<PermissionsController> {
                   children: [
                     Column(
                       children: [
-                        Image.asset("assets/images/logo_app.png", width: 45),
+                        Image.asset(
+                          "assets/images/logo_unimedjp.png",
+                          width: 45,
+                        ),
                         SizedBox(height: 20),
                         RichText(
                           textAlign: TextAlign.center,
@@ -49,7 +52,7 @@ class PermissionsPage extends GetView<PermissionsController> {
                             style: TextStyle(fontSize: 32),
                             children: [
                               TextSpan(
-                                text: "Colabora\n",
+                                text: "Unimed\n",
                                 style: TextStyle(
                                   height: 0.96,
                                   fontSize: 16,
@@ -58,7 +61,7 @@ class PermissionsPage extends GetView<PermissionsController> {
                                 ),
                               ),
                               TextSpan(
-                                text: "Unimed JP",
+                                text: "João Pessoa",
                                 style: TextStyle(
                                   height: 0.96,
                                   fontSize: 16,

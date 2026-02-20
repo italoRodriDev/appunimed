@@ -15,7 +15,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    namespace = "com.colabora.unimedjp"
+    namespace = "com.unimedjp"
     compileSdk = 36
     ndkVersion = "28.1.13356709"
 
