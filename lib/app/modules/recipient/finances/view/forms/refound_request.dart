@@ -3,6 +3,7 @@ import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/forms/
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/forms/assistance/step_3.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/forms/assistance/step_4.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/forms/assistance/step_5.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/forms/send_solicitation_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
@@ -41,12 +42,13 @@ class RefundRequestPage extends StatelessWidget {
           Step2FormAssistence(),
           Step3FormAssistence(),
           Step4FormAssistence(),
+          Step5FormAssistence(),
         ],
         onFinish: () {
           Get.back();
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => Step5FormAssistence()),
+            MaterialPageRoute(builder: (context) => SendSolicitationModal()),
           );
         },
       ),

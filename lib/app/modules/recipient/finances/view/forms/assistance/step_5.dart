@@ -1,71 +1,239 @@
-import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
-import 'package:app_colabora_unimedjp/app/modules/utils/components/button_app.component.dart';
-import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
+import 'package:app_colabora_unimedjp/app/modules/utils/components/checkbox_app.component.dart';
+import 'package:app_colabora_unimedjp/app/modules/utils/components/select_component_app.component.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-class Step5FormAssistence extends StatelessWidget {
+import '../../../../../../config/colors/colors.dart';
+import '../../../../../utils/components/inputs/input_app.component.dart';
+import '../../../../../utils/components/text_app.component.dart';
+import '../../components/form_swipe.dart';
+
+class Step5FormAssistence extends StatelessWidget implements LiquidStep {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController tipoReembolso = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController telefone = TextEditingController();
+  TextEditingController motivo = TextEditingController();
+  TextEditingController valorReembolso = TextEditingController();
+  TextEditingController descricao = TextEditingController();
+  ValueNotifier<bool> termsEvent = ValueNotifier(false);
+
+  @override
+  bool validate() => _formKey.currentState?.validate() ?? false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(20),
+    return Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      color: AppColor.background,
+      height: MediaQuery.of(
+        context,
+      ).size.height, // Garante que o container preencha a tela
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Spacer(),
-              Center(
-                child: Icon(
-                  Icons.check_circle,
-                  size: 80,
-                  color: AppColor.pantone382C,
-                ),
-              ),
-              SizedBox(height: 10),
               TextAppComponent(
-                value: 'Solicitação enviado com sucesso!',
-                fontSize: 22,
+                value: 'Dados do reembolso',
+                fontSize: 18,
                 color: AppColor.pantone348C,
                 fontWeight: FontWeight.w600,
-                textAlign: TextAlign.center,
               ),
+              SizedBox(height: 8),
+              SelectAppComponent(
+                primaryColor: AppColor.pantone382C,
+                enabledBorder: true,
+                centerSelectedValue: false,
+                labelText: 'Escolha o tipo de reembolso',
+                menuItemData: [MenuItemData(label: 'ANESTESIA', value: '1')],
+                onChanged: (value) {
+                  tipoReembolso.text = value;
+                },
+              ),
+              SizedBox(height: 8),
+              InputTextAppComponent(
+                textEditingController: email,
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.emailAddress,
+                labelText: "E-mail",
+                hintText: "Informe o e-mail",
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CpfInputFormatter(),
+                ],
+              ),
+              SizedBox(height: 8),
+              InputTextAppComponent(
+                textEditingController: telefone,
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.phone,
+                labelText: "Telefone",
+                hintText: "Informe o telefone",
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  TelefoneInputFormatter(),
+                ],
+              ),
+              SizedBox(height: 8),
+              SelectAppComponent(
+                primaryColor: AppColor.pantone382C,
+                enabledBorder: true,
+                centerSelectedValue: false,
+                labelText: 'Escolha o motivo da solicitação',
+                menuItemData: [
+                  MenuItemData(
+                    label: 'Indisponibilidade de rede Credenciada',
+                    value: '1',
+                  ),
+                ],
+                onChanged: (value) {
+                  motivo.text = value;
+                },
+              ),
+              SizedBox(height: 8),
+              InputTextAppComponent(
+                textEditingController: valorReembolso,
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.emailAddress,
+                labelText: "Quando será reembolsado?",
+                hintText: "00,00",
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  RealInputFormatter(),
+                ],
+              ),
+              SizedBox(height: 8),
+              InputTextAppComponent(
+                textEditingController: descricao,
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.text,
+                labelText: "Descrição do reembolso",
+                hintText: "Uma breve descrição do motivo do reembolso",
+                minLines: 3,
+                maxLines: 3,
+                maxLength: 500,
+              ),
+              const SizedBox(height: 24),
 
-              SizedBox(height: 20),
+              // Título Documentos
               TextAppComponent(
-                value:
-                    'Agora é só aguardar, fique a vontade para continuar navegando no app.',
+                value: 'Documentos necessários',
                 fontSize: 16,
-                height: 1.5,
-                textAlign: TextAlign.center,
+                fontWeight: FontWeight.bold,
+                color: AppColor.pantone7722C,
               ),
-
-              Spacer(),
-              Row(
-                children: [
-                  Expanded(
-                    child: ButtonStylizedAppComponent(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 10,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      label: TextAppComponent(
-                        value: "Voltar ao menu",
-                        fontSize: 16,
-                        fontWeight: FontWeight.w300,
+              const SizedBox(height: 12),
+              _buildBulletPoint("RG e CPF do plano"),
+              _buildBulletPoint(
+                "Documento com dados bancários (conta corrente ou poupança) para o crédito (cheque, extrato bancário, outros – conste Banco, Agencia e Conta) do titular do plano;",
+              ),
+              _buildBulletPoint(
+                "Casos de menor de 18 anos (adoção): Documentos expedidos pelo poder judiciário atestando as aludidas situações – guarda definitiva, tutela ou curatela;",
+              ),
+              _buildBulletPoint("No caso de ser pessoa física: anexar recibo;"),
+              _buildBulletPoint(
+                "No caso de ser pessoa jurídica: anexar recibo e Nota Fiscal;",
+              ),
+              _buildBulletPoint("Pedido/Relatório Médico (CRM);"),
+              const SizedBox(height: 20),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  "Os tipos dos arquivos que podem ser anexados: .pdf, .jpeg, .jpg, .png ou .gif; O tamanho do arquivo não deve superar 5MB; Ressaltamos que toda documentação acima é obrigatória para a análise do Reembolso e deve ser enviada completa. Em caso de falta de documentação, será dado um prazo de 5 dias úteis para apresentação da pendência e não apresentando o processo será cancelado e arquivado.",
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey[700],
+                    height: 1.4,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: const BoxDecoration(
+                    border: Border(bottom: BorderSide(color: Colors.grey)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      TextAppComponent(
+                        value: "Selecionar arquivos",
                         color: AppColor.pantone7722C,
                       ),
-                      color: AppColor.pantone382C,
+                      Icon(Icons.upload_outlined, color: AppColor.pantone7722C),
+                    ],
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              // Texto LGPD/Declaração
+              Text(
+                "Declaro que os dados fornecidos por mim e coletados pela Unimed João Pessoa são inseridos diretamente por minha ação ou encaminhados ativamente ao utilizar o APP da Unimed João Pessoa para solicitar serviços virtuais... [Texto Completo da LGPD]",
+                style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+              ),
+
+              const SizedBox(height: 16),
+              Row(
+                children: [
+                  ValueListenableBuilder(
+                    valueListenable: termsEvent,
+                    builder: (context, value, child) {
+                      return CheckboxAppComponent(
+                        initialValue: value,
+                        onChanged: (value) {
+                          termsEvent.value = value!;
+                        },
+                        checkedBorderColor: AppColor.pantone382C,
+                        iconColor: AppColor.pantone382C,
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: TextAppComponent(
+                      value: "Aceito os termos e condições",
+                      color: AppColor.pantone7722C,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 100),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildBulletPoint(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 6),
+            child: Icon(Icons.circle, size: 8, color: AppColor.pantone7722C),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: const TextStyle(fontSize: 14, height: 1.3),
+            ),
+          ),
+        ],
       ),
     );
   }
