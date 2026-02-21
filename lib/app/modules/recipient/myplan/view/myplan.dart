@@ -41,11 +41,13 @@ class MyPlanPage extends GetView<MyPlanController> {
                       fontWeight: FontWeight.w600,
                       color: AppColor.pantone348C,
                       fontSize: 22,
+                      textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 8),
                     TextAppComponent(
                       value:
                           'Aqui você tem acesso a todas as informações do seu plano.',
+                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 8),
                   ],

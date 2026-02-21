@@ -1,6 +1,7 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
 import 'package:app_colabora_unimedjp/app/config/fonts/fonts.dart';
 import 'package:app_colabora_unimedjp/app/data/models/contract.model.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/components/card_contract_wallet.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/toolbars/toolbar_app.component.dart';
 import 'package:app_colabora_unimedjp/app/routers/app_routers.dart';
@@ -39,10 +40,12 @@ class WalletPage extends GetView<WalletController> {
                       fontWeight: FontWeight.w600,
                       color: AppColor.pantone348C,
                       fontSize: 22,
+                      textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 8),
                     TextAppComponent(
                       value: 'Selecione uma carteira para visualizar.',
+                      textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 8),
                     ValueListenableBuilder(
@@ -81,10 +84,12 @@ class WalletPage extends GetView<WalletController> {
                 height: 500,
                 child: Column(
                   children: [
-                    _buildCard(
-                      context: context,
+                    CardContractWalletComponent(
                       title: 'Italo Rodrigues dos Santos',
                       subtitle: 'Titular',
+                      onPressed: () {
+                        Get.toNamed(RoutesApp.PREVIEW_WALLET);
+                      },
                     ),
                   ],
                 ),
@@ -117,51 +122,6 @@ class WalletPage extends GetView<WalletController> {
               */
               Divider(color: AppColor.medium),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCard({
-    required BuildContext context,
-    required String title,
-    required String subtitle,
-  }) {
-    return InkWell(
-      onTap: () {
-        Get.toNamed(RoutesApp.PREVIEW_WALLET);
-      },
-      child: Padding(
-        padding: EdgeInsetsGeometry.all(10),
-        child: Container(
-          height: 80,
-          decoration: BoxDecoration(
-            color: AppColor.pantone382C.withAlpha(60),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Padding(
-            padding: EdgeInsetsGeometry.all(10),
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextAppComponent(
-                      value: title,
-                      fontSize: 22,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.pantone7722C,
-                    ),
-                    TextAppComponent(
-                      value: subtitle,
-                      fontSize: 14,
-                      color: AppColor.pantone7722C,
-                    ),
-                  ],
-                ),
-              ],
-            ),
           ),
         ),
       ),

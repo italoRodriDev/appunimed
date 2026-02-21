@@ -7,6 +7,7 @@ class SelectAppComponent extends StatefulWidget {
   final Function(dynamic)? onChanged;
   final bool? enabled;
   final bool? enabledBorder;
+  final Color? borderColor;
   final bool centerSelectedValue;
   final List<MenuItemData> menuItemData;
   final Color primaryColor;
@@ -18,6 +19,7 @@ class SelectAppComponent extends StatefulWidget {
     this.onChanged,
     this.enabled,
     this.enabledBorder,
+    this.borderColor,
     this.menuItemData = const [],
     required this.primaryColor,
     this.centerSelectedValue = false,
@@ -67,11 +69,7 @@ class _SelectAppComponentState extends State<SelectAppComponent> {
           child: Text(
             label,
             textAlign: TextAlign.center,
-            style: TextStyle(
-              color: AppColor.pantone348C,
-              fontFamily: AppFont.UnimedSlab,
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyle(color: Colors.black),
           ),
         ),
       );
@@ -125,9 +123,9 @@ class _SelectAppComponentState extends State<SelectAppComponent> {
               widget.labelText!,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontWeight: FontWeight.w600,
-                color: AppColor.pantone348C,
+                fontWeight: FontWeight.w700,
                 fontFamily: AppFont.UnimedSans,
+                color: AppColor.pantone7722C,
               ),
             ),
             const SizedBox(height: 6),
@@ -137,7 +135,10 @@ class _SelectAppComponentState extends State<SelectAppComponent> {
             padding: const EdgeInsets.symmetric(horizontal: 14),
             decoration: BoxDecoration(
               border: widget.enabledBorder == true
-                  ? Border.all(width: 1.25, color: widget.primaryColor)
+                  ? Border.all(
+                      width: 1.25,
+                      color: widget.borderColor ?? Colors.grey,
+                    )
                   : null,
               borderRadius: BorderRadius.circular(12),
             ),
@@ -147,7 +148,7 @@ class _SelectAppComponentState extends State<SelectAppComponent> {
                 shadowColor: Colors.red,
               ),
               child: Align(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(
                     focusColor: AppColor.pantone7722C,

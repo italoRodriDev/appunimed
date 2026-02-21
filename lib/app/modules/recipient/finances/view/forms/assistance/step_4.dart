@@ -1,0 +1,129 @@
+import 'package:app_colabora_unimedjp/app/modules/utils/components/select_component_app.component.dart';
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import '../../../../../../config/colors/colors.dart';
+import '../../../../../utils/components/inputs/input_app.component.dart';
+import '../../../../../utils/components/text_app.component.dart';
+import '../../components/form_swipe.dart';
+
+class Step4FormAssistence extends StatelessWidget implements LiquidStep {
+  final _formKey = GlobalKey<FormState>();
+  TextEditingController nome = TextEditingController();
+  TextEditingController cpf = TextEditingController();
+  TextEditingController banco = TextEditingController();
+  TextEditingController agencia = TextEditingController();
+  TextEditingController conta = TextEditingController();
+  TextEditingController tipoConta = TextEditingController();
+
+  @override
+  bool validate() => _formKey.currentState?.validate() ?? false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
+      color: AppColor.background,
+      height: MediaQuery.of(
+        context,
+      ).size.height, // Garante que o container preencha a tela
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextAppComponent(
+                value: 'Dados bancários',
+                fontSize: 18,
+                color: AppColor.pantone348C,
+                fontWeight: FontWeight.w600,
+              ),
+
+              InputTextAppComponent(
+                textEditingController: nome,
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.name,
+                labelText: "Nome",
+                hintText: "Informe seu nome completo",
+              ),
+              SizedBox(height: 8),
+              InputTextAppComponent(
+                textEditingController: cpf,
+                textInputAction: TextInputAction.next,
+                textInputType: TextInputType.number,
+                labelText: "CPF",
+                hintText: "Informe o CPF",
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                  CpfInputFormatter(),
+                ],
+              ),
+              SizedBox(width: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: InputTextAppComponent(
+                      textEditingController: agencia,
+                      textInputAction: TextInputAction.next,
+                      textInputType: TextInputType.number,
+                      labelText: "Agência",
+                      hintText: "0000",
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter(),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: InputTextAppComponent(
+                      textEditingController: conta,
+                      textInputAction: TextInputAction.next,
+                      textInputType: TextInputType.number,
+                      labelText: "Conta",
+                      hintText: "000000000",
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 8),
+              SelectAppComponent(
+                primaryColor: AppColor.pantone382C,
+                enabledBorder: true,
+                centerSelectedValue: false,
+                labelText: 'Banco',
+                menuItemData: [
+                  MenuItemData(label: 'Banco do Brasil', value: '1'),
+                  MenuItemData(label: 'NuBank', value: '2'),
+                ],
+                onChanged: (value) {
+                  banco.text = value;
+                },
+              ),
+              SizedBox(width: 8),
+              SelectAppComponent(
+                primaryColor: AppColor.pantone382C,
+                enabledBorder: true,
+                centerSelectedValue: false,
+                labelText: 'Tipo de conta',
+                menuItemData: [
+                  MenuItemData(label: 'Conta Corrente', value: '1'),
+                  MenuItemData(label: 'Conta Poupança', value: '2'),
+                ],
+                onChanged: (value) {
+                  banco.text = value;
+                },
+              ),
+              SizedBox(height: 100),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

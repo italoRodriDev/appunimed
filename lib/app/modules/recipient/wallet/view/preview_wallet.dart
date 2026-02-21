@@ -25,15 +25,17 @@ class PreviewWalletPage extends GetView<PreviewWalletController> {
       ),
       body: SafeArea(
         child: Center(
-          child: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: TabsAppComponent(
-              fontSize: 16,
-              titlesTabs: ['Meu Cartão', 'QR-Code/Token'],
-              contentTabs: [buildCard(), buildQRCode()],
-              onChangeIndex: (index) {
-                if (index == 1) controller.startTime();
-              },
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: TabsAppComponent(
+                fontSize: 16,
+                titlesTabs: ['Meu Cartão', 'QR-Code/Token'],
+                contentTabs: [buildCard(), buildQRCode()],
+                onChangeIndex: (index) {
+                  if (index == 1) controller.startTime();
+                },
+              ),
             ),
           ),
         ),

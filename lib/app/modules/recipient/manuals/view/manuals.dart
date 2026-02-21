@@ -39,16 +39,17 @@ class ManualsPage extends GetView<ManualsController> {
                     fontWeight: FontWeight.w600,
                     color: AppColor.pantone348C,
                     fontSize: 22,
+                    textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 8),
                   TextAppComponent(
                     value: 'Selecione um dos manuais para visualizar.',
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8),
                 ],
               ),
             ),
-            SizedBox(height: 30),
             Divider(height: 0, color: AppColor.neutral2),
             for (var i = 0; i < 10; i++)
               CardManualsComponent(
