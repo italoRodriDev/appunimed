@@ -1,6 +1,7 @@
 import 'package:app_colabora_unimedjp/app/services/authentication.service.dart';
 import 'package:app_colabora_unimedjp/app/services/biometric.service.dart';
 import 'package:app_colabora_unimedjp/app/services/config.service.dart';
+import 'package:app_colabora_unimedjp/app/services/contracts.service.dart';
 import 'package:app_colabora_unimedjp/app/services/notifications.service.dart';
 import 'package:app_colabora_unimedjp/app/services/process_image.service.dart';
 import 'package:app_colabora_unimedjp/app/services/profile.service.dart';
@@ -43,6 +44,9 @@ initServices() async {
   );
   await Get.putAsync<BiometricService>(
     () async => await BiometricService().init(),
+  );
+  await Get.putAsync<ContractsService>(
+    () async => await ContractsService().init(),
   );
   await Get.putAsync<ProfileService>(() async => await ProfileService().init());
   await NotificationService.initialize();

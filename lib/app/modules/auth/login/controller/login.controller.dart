@@ -9,6 +9,7 @@ import 'package:app_colabora_unimedjp/app/modules/utils/components/alerts/popup_
 import 'package:app_colabora_unimedjp/app/modules/utils/components/alerts/snackbar_app.component.dart';
 import 'package:app_colabora_unimedjp/app/routers/app_routers.dart';
 import 'package:app_colabora_unimedjp/app/services/authentication.service.dart';
+import 'package:app_colabora_unimedjp/app/services/contracts.service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_crise/components/snackbar.component.dart';
 import 'package:get/get.dart';
@@ -131,6 +132,7 @@ class LoginController extends GetxController {
       );
 
       await SqliteApi.database;
+      await SqliteApi.clearDatabase();
       await saveProfileSqlite(data);
 
       if (data.contratos != null) {
@@ -157,6 +159,7 @@ class LoginController extends GetxController {
     var contract = await SqliteApi.getContract();
     print(contract);
     print("Contrato inserido: $result");
+    Get.find<ContractsService>().getContracts();
   }
 
   Future<void> checkIntroPage({

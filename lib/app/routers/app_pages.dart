@@ -4,16 +4,26 @@ import 'package:app_colabora_unimedjp/app/modules/auth/permissions/bindings/perm
 import 'package:app_colabora_unimedjp/app/modules/auth/permissions/view/permissions.dart';
 import 'package:app_colabora_unimedjp/app/modules/auth/recovery-password/view/recovery_password.dart';
 import 'package:app_colabora_unimedjp/app/modules/auth/splash/bindings/splash.bind.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/home/bindings/splash.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/faq/binding/faq.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/faq/view/faq.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/finances.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/finances.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/home/bindings/home.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/home.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/manuals/bindings/manuals.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/myplan/bindings/myplan.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/bindings/wallet.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/preview_wallet.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/wallet.dart';
 import 'package:app_colabora_unimedjp/app/routers/app_routers.dart';
 import 'package:get/get.dart';
 
 import '../modules/auth/login/view/login.dart';
 import '../modules/auth/recovery-password/bindings/recovery_password.bind.dart';
-import '../modules/auth/register-user/bindings/register_user.bind.dart';
-import '../modules/auth/register-user/view/register_user.dart';
 import '../modules/auth/splash/view/splash.dart';
+import '../modules/recipient/manuals/view/manuals.dart';
+import '../modules/recipient/myplan/view/myplan.dart';
+import '../modules/recipient/wallet/bindings/preview_wallet.bind.dart';
 
 const animation = Transition.circularReveal;
 const timeAnimation = 300;
@@ -54,6 +64,48 @@ class AppPages {
       transition: animation,
       transitionDuration: const Duration(milliseconds: timeAnimation),
       binding: HomeBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.WALLET,
+      page: () => WalletPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: WalletBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.PREVIEW_WALLET,
+      page: () => PreviewWalletPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: PreviewWalletBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.MYPLAN,
+      page: () => MyPlanPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: MyPlanBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.FINANCES,
+      page: () => FinancesPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: FinancesBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.FAQ,
+      page: () => FaqPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: FaqBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.MANUALS,
+      page: () => ManualsPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: ManualsBinding(),
     ),
     GetPage(
       name: RoutesApp.INEXISTENTE,

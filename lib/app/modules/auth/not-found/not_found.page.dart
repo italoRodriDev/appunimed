@@ -21,7 +21,7 @@ class NotFoundPage extends GetView {
               Get.back();
             },
             onPressedMenu: () {},
-            title: 'Desafio mensal',
+            title: '',
           ),
         ),
       ),
