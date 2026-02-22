@@ -5,7 +5,6 @@ import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/components
 import 'package:app_colabora_unimedjp/app/modules/utils/components/avatar_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/carrousel_image_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
-import 'package:app_colabora_unimedjp/app/routers/app_routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_minimizer_plus/flutter_app_minimizer_plus.dart';
 import 'package:get/get.dart';

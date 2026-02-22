@@ -71,6 +71,7 @@ dependencies:
   qr_flutter: ^4.1.0
   file_picker: ^10.3.10
   syncfusion_flutter_pdfviewer: ^32.2.5
+  syncfusion_flutter_calendar: ^32.1.23
 
 dev_dependencies:
   flutter_test:
