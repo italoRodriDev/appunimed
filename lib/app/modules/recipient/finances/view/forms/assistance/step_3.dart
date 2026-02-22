@@ -1,8 +1,9 @@
 import 'dart:io';
 
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/financial.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/button_app.component.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../../../../../config/colors/colors.dart';
@@ -10,8 +11,8 @@ import '../../../../../utils/components/text_app.component.dart';
 import '../../components/form_swipe.dart';
 
 class Step3FormAssistence extends StatelessWidget implements LiquidStep {
+  final FinancialController ctrl = Get.put(FinancialController());
   final _formKey = GlobalKey<FormState>();
-  ValueNotifier<File?> fileEvent = ValueNotifier(null);
 
   @override
   bool validate() => _formKey.currentState?.validate() ?? false;
@@ -70,7 +71,7 @@ class Step3FormAssistence extends StatelessWidget implements LiquidStep {
                       border: Border.all(color: AppColor.neutral2),
                     ),
                     child: ValueListenableBuilder(
-                      valueListenable: fileEvent,
+                      valueListenable: ctrl.formularioAutorizacao,
                       builder: (context, File? file, child) {
                         if (file != null) {
                           return Stack(
@@ -90,7 +91,7 @@ class Step3FormAssistence extends StatelessWidget implements LiquidStep {
                                           ButtonAppComponent(
                                             borderRadius: 100,
                                             onPressed: () {
-                                              pickPdf();
+                                              ctrl.pickPdf('FORMULARIO');
                                             },
                                             label: 'Anexar outro PDF',
                                             padding:
@@ -131,7 +132,7 @@ class Step3FormAssistence extends StatelessWidget implements LiquidStep {
                                     ButtonAppComponent(
                                       borderRadius: 100,
                                       onPressed: () {
-                                        pickPdf();
+                                        ctrl.pickPdf('FORMULARIO');
                                       },
                                       label: 'Anexar PDF',
                                       padding: EdgeInsetsGeometry.symmetric(
@@ -157,16 +158,5 @@ class Step3FormAssistence extends StatelessWidget implements LiquidStep {
         ),
       ),
     );
-  }
-
-  Future<void> pickPdf() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf'],
-    );
-
-    if (result != null) {
-      fileEvent.value = File(result.files.single.path!);
-    }
   }
 }

@@ -9,11 +9,13 @@ import 'package:get/get.dart';
 import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
 
 import '../../../../utils/components/toolbars/toolbar_app.component.dart';
+import '../../controller/financial.controller.dart';
 import '../components/form_swipe.dart';
 
 enum RefundType { financeiro, assistencial }
 
 class RefundRequestPage extends StatelessWidget {
+  final FinancialController ctrl = Get.put(FinancialController());
   final RefundType type;
   final LiquidController _controller = LiquidController();
 
@@ -45,11 +47,7 @@ class RefundRequestPage extends StatelessWidget {
           Step5FormAssistence(),
         ],
         onFinish: () {
-          Get.back();
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SendSolicitationModal()),
-          );
+          ctrl.sendSolucitation();
         },
       ),
     );

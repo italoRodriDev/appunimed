@@ -7,6 +7,7 @@ import 'package:app_colabora_unimedjp/app/modules/auth/splash/bindings/splash.bi
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/binding/faq.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/view/faq.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/finances.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/financial.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/finances.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/bindings/home.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/home.dart';
@@ -92,6 +93,7 @@ class AppPages {
       transition: animation,
       transitionDuration: const Duration(milliseconds: timeAnimation),
       binding: FinancesBinding(),
+      bindings: [FinancialBinding()],
     ),
     GetPage(
       name: RoutesApp.FAQ,

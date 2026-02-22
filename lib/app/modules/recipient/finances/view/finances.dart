@@ -1,3 +1,4 @@
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/finances.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/components/card_service_finances.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/tab_app.component.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ import '../../../../config/fonts/fonts.dart';
 import '../../../../data/models/found.model.dart';
 import '../../../utils/components/text_app.component.dart';
 import '../../../utils/components/toolbars/toolbar_app.component.dart';
-import '../controller/finances.controller.dart';
 import 'components/card_refund.component.dart';
 import 'forms/refound_request.dart';
 

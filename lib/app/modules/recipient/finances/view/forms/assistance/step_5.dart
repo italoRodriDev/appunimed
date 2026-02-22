@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/financial.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/checkbox_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/select_component_app.component.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../config/colors/colors.dart';
 import '../../../../../utils/components/inputs/input_app.component.dart';
@@ -10,14 +14,8 @@ import '../../../../../utils/components/text_app.component.dart';
 import '../../components/form_swipe.dart';
 
 class Step5FormAssistence extends StatelessWidget implements LiquidStep {
+  final FinancialController ctrl = Get.put(FinancialController());
   final _formKey = GlobalKey<FormState>();
-  TextEditingController tipoReembolso = TextEditingController();
-  TextEditingController email = TextEditingController();
-  TextEditingController telefone = TextEditingController();
-  TextEditingController motivo = TextEditingController();
-  TextEditingController valorReembolso = TextEditingController();
-  TextEditingController descricao = TextEditingController();
-  ValueNotifier<bool> termsEvent = ValueNotifier(false);
 
   @override
   bool validate() => _formKey.currentState?.validate() ?? false;
@@ -49,24 +47,20 @@ class Step5FormAssistence extends StatelessWidget implements LiquidStep {
                 labelText: 'Escolha o tipo de reembolso',
                 menuItemData: [MenuItemData(label: 'ANESTESIA', value: '1')],
                 onChanged: (value) {
-                  tipoReembolso.text = value;
+                  ctrl.tipoReembolso.text = value;
                 },
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: email,
+                textEditingController: ctrl.email,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.emailAddress,
                 labelText: "E-mail",
                 hintText: "Informe o e-mail",
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  CpfInputFormatter(),
-                ],
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: telefone,
+                textEditingController: ctrl.telefone,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.phone,
                 labelText: "Telefone",
@@ -89,12 +83,12 @@ class Step5FormAssistence extends StatelessWidget implements LiquidStep {
                   ),
                 ],
                 onChanged: (value) {
-                  motivo.text = value;
+                  ctrl.motivo.text = value;
                 },
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: valorReembolso,
+                textEditingController: ctrl.valorReembolso,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.emailAddress,
                 labelText: "Quando será reembolsado?",
@@ -106,7 +100,7 @@ class Step5FormAssistence extends StatelessWidget implements LiquidStep {
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: descricao,
+                textEditingController: ctrl.descricao,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.text,
                 labelText: "Descrição do reembolso",
@@ -155,7 +149,9 @@ class Step5FormAssistence extends StatelessWidget implements LiquidStep {
               ),
               const SizedBox(height: 24),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  ctrl.showAlertOptionsSelectFiles(context);
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   decoration: const BoxDecoration(
@@ -164,11 +160,23 @@ class Step5FormAssistence extends StatelessWidget implements LiquidStep {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TextAppComponent(
-                        value: "Selecionar arquivos",
-                        color: AppColor.pantone7722C,
+                      ValueListenableBuilder(
+                        valueListenable: ctrl.documentos,
+                        builder: (context, List<File?> files, child) {
+                          if (files.isNotEmpty) {
+                            return TextAppComponent(
+                              value:
+                                  '${files.length} arquivo(s) selecionado(s)',
+                              color: AppColor.pantone7722C,
+                            );
+                          }
+                          return TextAppComponent(
+                            value: "Selecionar arquivos",
+                            color: AppColor.pantone7722C,
+                          );
+                        },
                       ),
-                      Icon(Icons.upload_outlined, color: AppColor.pantone7722C),
+                      Icon(Icons.upload, color: AppColor.pantone382C),
                     ],
                   ),
                 ),
@@ -186,12 +194,12 @@ class Step5FormAssistence extends StatelessWidget implements LiquidStep {
               Row(
                 children: [
                   ValueListenableBuilder(
-                    valueListenable: termsEvent,
+                    valueListenable: ctrl.termsEvent,
                     builder: (context, value, child) {
                       return CheckboxAppComponent(
                         initialValue: value,
                         onChanged: (value) {
-                          termsEvent.value = value!;
+                          ctrl.termsEvent.value = value!;
                         },
                         checkedBorderColor: AppColor.pantone382C,
                         iconColor: AppColor.pantone382C,

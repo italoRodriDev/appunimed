@@ -1,7 +1,9 @@
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/financial.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/select_component_app.component.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../config/colors/colors.dart';
 import '../../../../../utils/components/inputs/input_app.component.dart';
@@ -9,13 +11,8 @@ import '../../../../../utils/components/text_app.component.dart';
 import '../../components/form_swipe.dart';
 
 class Step4FormAssistence extends StatelessWidget implements LiquidStep {
+  final FinancialController ctrl = Get.put(FinancialController());
   final _formKey = GlobalKey<FormState>();
-  TextEditingController nome = TextEditingController();
-  TextEditingController cpf = TextEditingController();
-  TextEditingController banco = TextEditingController();
-  TextEditingController agencia = TextEditingController();
-  TextEditingController conta = TextEditingController();
-  TextEditingController tipoConta = TextEditingController();
 
   @override
   bool validate() => _formKey.currentState?.validate() ?? false;
@@ -41,7 +38,7 @@ class Step4FormAssistence extends StatelessWidget implements LiquidStep {
               ),
 
               InputTextAppComponent(
-                textEditingController: nome,
+                textEditingController: ctrl.nome,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.name,
                 labelText: "Nome",
@@ -49,7 +46,7 @@ class Step4FormAssistence extends StatelessWidget implements LiquidStep {
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: cpf,
+                textEditingController: ctrl.cpfConta,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.number,
                 labelText: "CPF",
@@ -64,7 +61,7 @@ class Step4FormAssistence extends StatelessWidget implements LiquidStep {
                 children: [
                   Expanded(
                     child: InputTextAppComponent(
-                      textEditingController: agencia,
+                      textEditingController: ctrl.agencia,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.number,
                       labelText: "Agência",
@@ -78,7 +75,7 @@ class Step4FormAssistence extends StatelessWidget implements LiquidStep {
                   SizedBox(width: 8),
                   Expanded(
                     child: InputTextAppComponent(
-                      textEditingController: conta,
+                      textEditingController: ctrl.conta,
                       textInputAction: TextInputAction.next,
                       textInputType: TextInputType.number,
                       labelText: "Conta",
@@ -102,7 +99,7 @@ class Step4FormAssistence extends StatelessWidget implements LiquidStep {
                   MenuItemData(label: 'NuBank', value: '2'),
                 ],
                 onChanged: (value) {
-                  banco.text = value;
+                  ctrl.banco.text = value;
                 },
               ),
               SizedBox(width: 8),
@@ -116,7 +113,7 @@ class Step4FormAssistence extends StatelessWidget implements LiquidStep {
                   MenuItemData(label: 'Conta Poupança', value: '2'),
                 ],
                 onChanged: (value) {
-                  banco.text = value;
+                  ctrl.tipoConta.text = value;
                 },
               ),
               SizedBox(height: 100),

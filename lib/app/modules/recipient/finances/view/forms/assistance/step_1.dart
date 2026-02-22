@@ -1,10 +1,13 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/financial.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../components/form_swipe.dart';
 
 class Step1FormAssistence extends StatelessWidget implements LiquidStep {
+  final FinancialController ctrl = Get.put(FinancialController());
   final _formKey = GlobalKey<FormState>();
 
   @override

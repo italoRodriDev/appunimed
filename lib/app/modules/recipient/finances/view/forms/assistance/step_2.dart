@@ -1,7 +1,9 @@
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/financial.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/select_component_app.component.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../../../../../../config/colors/colors.dart';
 import '../../../../../utils/components/inputs/input_app.component.dart';
@@ -9,11 +11,8 @@ import '../../../../../utils/components/text_app.component.dart';
 import '../../components/form_swipe.dart';
 
 class Step2FormAssistence extends StatelessWidget implements LiquidStep {
+  final FinancialController ctrl = Get.put(FinancialController());
   final _formKey = GlobalKey<FormState>();
-  TextEditingController rg = TextEditingController();
-  TextEditingController cpf = TextEditingController();
-  TextEditingController beneficiario = TextEditingController();
-  TextEditingController tipoInfoBancaria = TextEditingController();
 
   @override
   bool validate() => _formKey.currentState?.validate() ?? false;
@@ -40,7 +39,7 @@ class Step2FormAssistence extends StatelessWidget implements LiquidStep {
 
               SizedBox(height: 20),
               InputTextAppComponent(
-                textEditingController: rg,
+                textEditingController: ctrl.rg,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.number,
                 labelText: "RG",
@@ -48,7 +47,7 @@ class Step2FormAssistence extends StatelessWidget implements LiquidStep {
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: cpf,
+                textEditingController: ctrl.cpf,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.number,
                 labelText: "CPF",
@@ -69,7 +68,7 @@ class Step2FormAssistence extends StatelessWidget implements LiquidStep {
                   MenuItemData(label: 'Maria da silva', value: '2'),
                 ],
                 onChanged: (value) {
-                  beneficiario.text = value;
+                  ctrl.beneficiario.text = value;
                 },
               ),
               SizedBox(height: 8),
@@ -82,7 +81,7 @@ class Step2FormAssistence extends StatelessWidget implements LiquidStep {
                   MenuItemData(label: 'Conta de terceiro', value: '2'),
                 ],
                 onChanged: (value) {
-                  tipoInfoBancaria.text = value;
+                  ctrl.tipoInfoBancaria.text = value;
                 },
               ),
               SizedBox(height: 100),
