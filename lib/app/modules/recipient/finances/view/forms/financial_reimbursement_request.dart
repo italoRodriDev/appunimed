@@ -9,10 +9,10 @@ import 'package:get/get.dart';
 import 'package:liquid_swipe/PageHelpers/LiquidController.dart';
 import 'package:loading_overlay/loading_overlay.dart';
 
+import '../../../../utils/components/form_swipe.dart';
 import '../../../../utils/components/progress_app.component.dart';
 import '../../../../utils/components/toolbars/toolbar_app.component.dart';
 import '../../controller/assistence_reimbursement.controller.dart';
-import '../components/form_swipe.dart';
 
 class FinancialReimbursementRequestPage extends StatelessWidget {
   final AssistenceReimbursementController ctrl = Get.put(

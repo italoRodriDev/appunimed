@@ -9,6 +9,7 @@ abstract class RoutesApp {
   static const PREVIEW_WALLET = '/preview-wallet';
   static const MYPLAN = '/my-plan';
   static const FINANCES = '/finances';
+  static const TELEHEALTH = '/telehealth';
   static const FAQ = '/faq';
   static const MANUALS = '/manuals';
   static const INEXISTENTE = '/inexistente';

@@ -5,8 +5,8 @@ import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.comp
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../utils/components/form_swipe.dart';
 import '../../../controller/financial_reimbursement.controller.dart';
-import '../../components/form_swipe.dart';
 
 class Step1FormAssistence extends StatelessWidget implements LiquidStep {
   final FinancialReimbursementController ctrl = Get.put(

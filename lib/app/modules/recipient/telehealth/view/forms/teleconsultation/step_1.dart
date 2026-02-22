@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/components/form_swipe.dart';
-import '../../../controller/financial_reimbursement.controller.dart';
+import '../../../controller/teleconsultation.controller.dart';
 
-class Step1FormFinancial extends StatelessWidget implements LiquidStep {
-  final FinancialReimbursementController ctrl = Get.put(
-    FinancialReimbursementController(),
-  );
+class Step1FormTeleConsultation extends StatelessWidget implements LiquidStep {
+  final TeleConsultationController ctrl = Get.put(TeleConsultationController());
   final _formKey = GlobalKey<FormState>();
 
   @override

@@ -7,21 +7,15 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../../utils/components/form_swipe.dart';
 import '../../../../utils/components/progress_app.component.dart';
 import '../../../../utils/components/toolbars/toolbar_app.component.dart';
-import '../../controller/assistence_reimbursement.controller.dart';
-import 'assistance/step_1.dart';
-import 'assistance/step_2.dart';
-import 'assistance/step_3.dart';
-import 'assistance/step_4.dart';
-import 'assistance/step_5.dart';
+import '../../controller/teleconsultation.controller.dart';
+import 'teleconsultation/step_1.dart';
 
-class AssistenceReimbursementRequestPage extends StatelessWidget {
-  final AssistenceReimbursementController ctrl = Get.put(
-    AssistenceReimbursementController(),
-  );
+class TeleConsultationRequestPage extends StatelessWidget {
+  final TeleConsultationController ctrl = Get.put(TeleConsultationController());
   ConfigService configService = Get.find<ConfigService>();
   final LiquidController _controller = LiquidController();
 
-  AssistenceReimbursementRequestPage({super.key});
+  TeleConsultationRequestPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +30,7 @@ class AssistenceReimbursementRequestPage extends StatelessWidget {
             child: ToolbarAppComponent(
               onPressedMenu: () {},
               showMenu: false,
-              title: 'Reembolso assistencial',
+              title: 'Tele consulta',
             ),
           ),
         ),
@@ -44,16 +38,8 @@ class AssistenceReimbursementRequestPage extends StatelessWidget {
           child: SmartLiquidForm(
             liquidSwipeController: _controller,
             labelButtonFinish: 'Enviar solicitação',
-            steps: [
-              Step1FormAssistence(),
-              Step2FormAssistence(),
-              Step3FormAssistence(),
-              Step4FormAssistence(),
-              Step5FormAssistence(),
-            ],
-            onFinish: () {
-              ctrl.sendSolucitation();
-            },
+            steps: [Step1FormTeleConsultation()],
+            onFinish: () {},
           ),
         ),
       ),

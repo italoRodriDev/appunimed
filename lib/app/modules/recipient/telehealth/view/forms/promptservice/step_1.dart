@@ -1,15 +1,13 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/controller/promptservice.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/components/form_swipe.dart';
-import '../../../controller/financial_reimbursement.controller.dart';
 
-class Step1FormFinancial extends StatelessWidget implements LiquidStep {
-  final FinancialReimbursementController ctrl = Get.put(
-    FinancialReimbursementController(),
-  );
+class Step1FormPromptService extends StatelessWidget implements LiquidStep {
+  final PromptServiceController ctrl = Get.put(PromptServiceController());
   final _formKey = GlobalKey<FormState>();
 
   @override

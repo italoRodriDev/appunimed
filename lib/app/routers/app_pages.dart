@@ -6,14 +6,18 @@ import 'package:app_colabora_unimedjp/app/modules/auth/recovery-password/view/re
 import 'package:app_colabora_unimedjp/app/modules/auth/splash/bindings/splash.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/binding/faq.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/view/faq.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/finances.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/assistence_reimbursement.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/finances.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/financial_reimbursement.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/finances.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/bindings/home.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/home.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/manuals/bindings/manuals.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/myplan/bindings/myplan.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/promptservice.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/teleconsultation.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/components/card_telehealth_consultantion.component.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/telehealth.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/bindings/wallet.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/preview_wallet.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/wallet.dart';
@@ -25,6 +29,7 @@ import '../modules/auth/recovery-password/bindings/recovery_password.bind.dart';
 import '../modules/auth/splash/view/splash.dart';
 import '../modules/recipient/manuals/view/manuals.dart';
 import '../modules/recipient/myplan/view/myplan.dart';
+import '../modules/recipient/telehealth/bindings/telehealth.bind.dart';
 import '../modules/recipient/wallet/bindings/preview_wallet.bind.dart';
 
 const animation = Transition.circularReveal;
@@ -98,6 +103,14 @@ class AppPages {
         AssistenceReimbursementBinding(),
         FinancialReimbursementBinding(),
       ],
+    ),
+    GetPage(
+      name: RoutesApp.TELEHEALTH,
+      page: () => TeleHealthPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: TeleHealthBinding(),
+      bindings: [PromptServiceBinding(), TeleConsultationBinding()],
     ),
     GetPage(
       name: RoutesApp.FAQ,

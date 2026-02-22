@@ -11,7 +11,7 @@ import '../../../../../../config/colors/colors.dart';
 import '../../../../../utils/components/inputs/input_app.component.dart';
 import '../../../../../utils/components/text_app.component.dart';
 import '../../../controller/financial_reimbursement.controller.dart';
-import '../../components/form_swipe.dart';
+import '../../../../../utils/components/form_swipe.dart';
 
 class Step5FormAssistence extends StatelessWidget implements LiquidStep {
   final FinancialReimbursementController ctrl = Get.put(
