@@ -13,7 +13,7 @@ import '../../../../../utils/components/text_app.component.dart';
 import '../../../controller/financial_reimbursement.controller.dart';
 import '../../components/form_swipe.dart';
 
-class Step5FormAssistence extends StatelessWidget implements LiquidStep {
+class Step5FormFinancial extends StatelessWidget implements LiquidStep {
   final FinancialReimbursementController ctrl = Get.put(
     FinancialReimbursementController(),
   );

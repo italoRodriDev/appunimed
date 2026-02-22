@@ -48,60 +48,63 @@ class _SmartLiquidFormState extends State<SmartLiquidForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        LiquidSwipe(
-          pages: widget.steps,
-          liquidController: widget.liquidSwipeController,
-          disableUserGesture:
-              true, // Bloqueia swipe manual para forçar validação
-          onPageChangeCallback: (index) => setState(() => _currentStep = index),
-        ),
+    return SafeArea(
+      child: Stack(
+        children: [
+          LiquidSwipe(
+            pages: widget.steps,
+            liquidController: widget.liquidSwipeController,
+            disableUserGesture:
+                true, // Bloqueia swipe manual para forçar validação
+            onPageChangeCallback: (index) =>
+                setState(() => _currentStep = index),
+          ),
 
-        Positioned(
-          bottom: 30,
-          left: 20,
-          right: 20,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              if (_currentStep > 0)
+          Positioned(
+            bottom: 30,
+            left: 20,
+            right: 20,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                if (_currentStep > 0)
+                  ButtonStylizedAppComponent(
+                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    borderRadius: 100,
+                    onPressed: () {
+                      widget.liquidSwipeController.animateToPage(
+                        page: _currentStep - 1,
+                      );
+                    },
+                    label: TextAppComponent(
+                      value: "Voltar",
+                      fontSize: 16,
+                      fontWeight: FontWeight.w300,
+                    ),
+                    color: AppColor.pantone7722C,
+                  ),
+
+                const Spacer(),
                 ButtonStylizedAppComponent(
                   padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   borderRadius: 100,
                   onPressed: () {
-                    widget.liquidSwipeController.animateToPage(
-                      page: _currentStep - 1,
-                    );
+                    _handleNext();
                   },
                   label: TextAppComponent(
-                    value: "Voltar",
+                    value: _currentStep == widget.steps.length - 1
+                        ? widget.labelButtonFinish
+                        : "Próximo",
                     fontSize: 16,
                     fontWeight: FontWeight.w300,
                   ),
                   color: AppColor.pantone7722C,
                 ),
-
-              const Spacer(),
-              ButtonStylizedAppComponent(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                borderRadius: 100,
-                onPressed: () {
-                  _handleNext();
-                },
-                label: TextAppComponent(
-                  value: _currentStep == widget.steps.length - 1
-                      ? widget.labelButtonFinish
-                      : "Próximo",
-                  fontSize: 16,
-                  fontWeight: FontWeight.w300,
-                ),
-                color: AppColor.pantone7722C,
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

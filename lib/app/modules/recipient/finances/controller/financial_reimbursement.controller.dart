@@ -11,7 +11,7 @@ import '../../../../services/process_image.service.dart';
 import '../../../utils/components/alerts/snackbar_app.component.dart';
 import '../view/forms/send_solicitation_modal.dart';
 
-class FinancialController extends GetxController {
+class FinancialReimbursementController extends GetxController {
   final ConfigService configService = Get.find<ConfigService>();
   final ProcessImageService processImageService =
       Get.find<ProcessImageService>();

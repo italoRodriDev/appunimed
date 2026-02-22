@@ -1,5 +1,6 @@
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/finances.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/components/card_service_finances.component.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/forms/financial_reimbursement_request.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/tab_app.component.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +11,7 @@ import '../../../../data/models/found.model.dart';
 import '../../../utils/components/text_app.component.dart';
 import '../../../utils/components/toolbars/toolbar_app.component.dart';
 import 'components/card_refund.component.dart';
-import 'forms/refound_request.dart';
+import 'forms/assistence_reimbursement_request.dart';
 
 class FinancesPage extends GetView<FinancesController> {
   @override
@@ -68,14 +69,14 @@ class FinancesPage extends GetView<FinancesController> {
             title: 'Reembolso financeiro',
             subtitle: 'Solicitar',
             onPressed: () {
-              toFormSolicitation(type: RefundType.financeiro);
+              toFormSolicitationFinancial();
             },
           ),
           CardServiceFinancesComponent(
             title: 'Reembolso assistencial',
             subtitle: 'Solicitar',
             onPressed: () {
-              toFormSolicitation(type: RefundType.assistencial);
+              toFormSolicitationAssistence();
             },
           ),
         ],
@@ -83,8 +84,12 @@ class FinancesPage extends GetView<FinancesController> {
     );
   }
 
-  toFormSolicitation({required RefundType type}) {
-    Get.to(() => RefundRequestPage(type: type));
+  toFormSolicitationFinancial() {
+    Get.to(() => FinancialReimbursementRequestPage());
+  }
+
+  toFormSolicitationAssistence() {
+    Get.to(() => AssistenceReimbursementRequestPage());
   }
 
   Widget buildMyRefunds() {

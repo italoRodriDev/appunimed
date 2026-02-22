@@ -1,13 +1,17 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/financial.controller.dart';
+import 'package:app_colabora_unimedjp/app/config/fonts/fonts.dart';
+import 'package:app_colabora_unimedjp/app/modules/utils/components/preview_pdf.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controller/financial_reimbursement.controller.dart';
 import '../../components/form_swipe.dart';
 
 class Step1FormAssistence extends StatelessWidget implements LiquidStep {
-  final FinancialController ctrl = Get.put(FinancialController());
+  final FinancialReimbursementController ctrl = Get.put(
+    FinancialReimbursementController(),
+  );
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -30,105 +34,101 @@ class Step1FormAssistence extends StatelessWidget implements LiquidStep {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextAppComponent(
-                  value: 'Solicitação Reembolso Financeiro',
+                  value: 'Solicitação de Reembolso Assistencial',
                   fontSize: 18,
                   color: AppColor.pantone348C,
                   fontWeight: FontWeight.w600,
                 ),
 
-                SizedBox(height: 20),
+                SizedBox(height: 8),
                 TextAppComponent(
                   value:
-                      'Reembolso por coparticipação ou mensalidade indevida, mensalidade paga em duplicidade, óbito, tanto do titular quanto do dependente, e transporte.',
+                      """Antes de solicitar o reembolso assistencial, é fundamental ler o guia de orientação a baixo para saber em quais situações ele se aplica, quem pode fazer a solicitação, como é o pagamento, o prazo, entre outras informações que vão garantir a sua satisfação.""",
                   fontSize: 16,
-                  height: 1.5,
                 ),
                 SizedBox(height: 20),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      height: 1.5,
+                InkWell(
+                  onTap: () {
+                    showPDFGuia(context);
+                  },
+                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: AppColor.pantone382C.withAlpha(60),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
-                    children: [
-                      TextSpan(text: 'Para os casos de reembolso por '),
-                      TextSpan(
-                        text: 'coparticipação indevida ou transporte',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text: ', é preciso realizar um contato prévio e ',
-                      ),
-                      TextSpan(
-                        text:
-                            'informar o protocolo quando for solicitar o reembolso',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(text: '.'),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      height: 1.5,
-                    ),
-                    children: [
-                      TextSpan(text: 'Acesse o '),
-                      TextSpan(
-                        text: 'Fale Conosco',
-                        style: TextStyle(
-                          color: AppColor.pantone348C,
-                          fontWeight: FontWeight.bold,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 160,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsGeometry.only(left: 12),
+                                child: TextAppComponent(
+                                  value: 'Tire suas dúvidas sobre o reembolso.',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                  height: 0,
+                                  fontStyle: FontStyle.italic,
+                                  fontFamily: AppFont.UnimedSlab,
+                                  color: AppColor.pantone348C,
+                                ),
+                              ),
+                              TextAppComponent(
+                                value: 'Leia o guia clicando aqui',
+                                color: AppColor.pantone382C,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      TextSpan(
-                        text:
-                            ', preencha o formulário, selecionando o "Assunto" como "Outros", anexe uma evidência e faça o envio da mensagem. Em alguns dias, acesse sua caixa de e-mails para ',
-                      ),
-                      TextSpan(
-                        text: 'conseguir o protocolo do seu contato prévio',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text:
-                            ', ele será necessário para realizar a solicitação.',
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      height: 1.5,
-                    ),
-                    children: [
-                      TextSpan(
-                        text:
-                            'Em caso de dúvidas, entre em contato com o atendimento ao cliente através do ',
-                      ),
-                      TextSpan(
-                        text: 'Fale Conosco',
-                        style: TextStyle(
-                          color: AppColor.pantone348C,
-                          fontWeight: FontWeight.bold,
+                        Icon(Icons.arrow_forward, color: AppColor.pantone382C),
+                        Spacer(),
+                        TweenAnimationBuilder<double>(
+                          tween: Tween<double>(begin: 1.0, end: 1.1),
+                          duration: const Duration(milliseconds: 1000),
+                          curve: Curves.easeInOutSine,
+                          builder: (context, scale, child) {
+                            return Transform.scale(scale: scale, child: child);
+                          },
+                          onEnd: () {},
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16),
+                              ),
+                            ),
+                            child: Image.asset(
+                              'assets/images/guiareembolso.png',
+                              width: 80,
+                            ),
+                          ),
                         ),
-                      ),
-                      TextSpan(text: ' ou pelo SAC 0800 725 1200.'),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 100),
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  showPDFGuia(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PreviewPDFComponent(
+          title: 'Reembolso assistencial',
+          url:
+              'https://ontheline.trincoll.edu/images/bookdown/sample-local-pdf.pdf',
+          isNetwork: true,
         ),
       ),
     );

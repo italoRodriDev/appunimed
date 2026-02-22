@@ -1,3 +1,4 @@
+import 'package:app_colabora_unimedjp/app/modules/recipient/finances/controller/assistence_reimbursement.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/select_component_app.component.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import '../../../../../utils/components/text_app.component.dart';
 import '../../../controller/financial_reimbursement.controller.dart';
 import '../../components/form_swipe.dart';
 
-class Step2FormAssistence extends StatelessWidget implements LiquidStep {
+class Step4FormFinancial extends StatelessWidget implements LiquidStep {
   final FinancialReimbursementController ctrl = Get.put(
     FinancialReimbursementController(),
   );
@@ -33,23 +34,22 @@ class Step2FormAssistence extends StatelessWidget implements LiquidStep {
           child: Column(
             children: [
               TextAppComponent(
-                value: 'Confirme suas informações',
+                value: 'Dados bancários',
                 fontSize: 18,
                 color: AppColor.pantone348C,
                 fontWeight: FontWeight.w600,
               ),
 
-              SizedBox(height: 20),
               InputTextAppComponent(
-                textEditingController: ctrl.rg,
+                textEditingController: ctrl.nome,
                 textInputAction: TextInputAction.next,
-                textInputType: TextInputType.number,
-                labelText: "RG",
-                hintText: "Informe o RG",
+                textInputType: TextInputType.name,
+                labelText: "Nome",
+                hintText: "Informe seu nome completo",
               ),
               SizedBox(height: 8),
               InputTextAppComponent(
-                textEditingController: ctrl.cpf,
+                textEditingController: ctrl.cpfConta,
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.number,
                 labelText: "CPF",
@@ -59,31 +59,64 @@ class Step2FormAssistence extends StatelessWidget implements LiquidStep {
                   CpfInputFormatter(),
                 ],
               ),
-              SizedBox(height: 8),
+              SizedBox(width: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: InputTextAppComponent(
+                      textEditingController: ctrl.agencia,
+                      textInputAction: TextInputAction.next,
+                      textInputType: TextInputType.number,
+                      labelText: "Agência",
+                      hintText: "0000",
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter(),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Expanded(
+                    child: InputTextAppComponent(
+                      textEditingController: ctrl.conta,
+                      textInputAction: TextInputAction.next,
+                      textInputType: TextInputType.number,
+                      labelText: "Conta",
+                      hintText: "000000000",
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 8),
               SelectAppComponent(
                 primaryColor: AppColor.pantone382C,
                 enabledBorder: true,
                 centerSelectedValue: false,
-                labelText: 'Para qual beneficíario será o reembolso?',
+                labelText: 'Banco',
                 menuItemData: [
-                  MenuItemData(label: 'Italo Rodrigues dos Santos', value: '1'),
-                  MenuItemData(label: 'Maria da silva', value: '2'),
+                  MenuItemData(label: 'Banco do Brasil', value: '1'),
+                  MenuItemData(label: 'NuBank', value: '2'),
                 ],
                 onChanged: (value) {
-                  ctrl.beneficiario.text = value;
+                  ctrl.banco.text = value;
                 },
               ),
-              SizedBox(height: 8),
+              SizedBox(width: 8),
               SelectAppComponent(
                 primaryColor: AppColor.pantone382C,
                 enabledBorder: true,
-                labelText: 'De quem será a conta de pagamento?',
+                centerSelectedValue: false,
+                labelText: 'Tipo de conta',
                 menuItemData: [
-                  MenuItemData(label: 'Conta do titular', value: '1'),
-                  MenuItemData(label: 'Conta de terceiro', value: '2'),
+                  MenuItemData(label: 'Conta Corrente', value: '1'),
+                  MenuItemData(label: 'Conta Poupança', value: '2'),
                 ],
                 onChanged: (value) {
-                  ctrl.tipoInfoBancaria.text = value;
+                  ctrl.tipoConta.text = value;
                 },
               ),
               SizedBox(height: 100),

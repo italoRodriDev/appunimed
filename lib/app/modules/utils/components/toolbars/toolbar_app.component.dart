@@ -63,6 +63,7 @@ class _ToolbarAppComponentState extends State<ToolbarAppComponent>
               child: Center(
                 child: TextComponent(
                   value: widget.title,
+                  textAlign: TextAlign.center,
                   fontSize: 14,
                   color: widget.colorText ?? AppColor.pantone348C,
                 ),
@@ -97,6 +98,7 @@ class _ToolbarAppComponentState extends State<ToolbarAppComponent>
             ),
           ],
         ),
+        Container(color: AppColor.neutral4, height: 1),
       ],
     );
   }
