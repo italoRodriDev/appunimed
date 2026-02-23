@@ -1,9 +1,13 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../../utils/components/form_swipe.dart';
+import '../../../../../utils/components/inputs/input_app.component.dart';
+import '../../../../../utils/components/select_component_app.component.dart';
 import '../../../controller/teleconsultation.controller.dart';
 
 class Step1FormTeleConsultation extends StatelessWidget implements LiquidStep {
@@ -30,100 +34,58 @@ class Step1FormTeleConsultation extends StatelessWidget implements LiquidStep {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextAppComponent(
-                  value: 'Solicitação de Reembolso Financeiro',
+                  value: 'Escolha um beneficiário',
                   fontSize: 18,
                   color: AppColor.pantone348C,
                   fontWeight: FontWeight.w600,
                 ),
-
-                SizedBox(height: 20),
+                SizedBox(height: 8),
                 TextAppComponent(
                   value:
-                      'Reembolso por coparticipação ou mensalidade indevida, mensalidade paga em duplicidade, óbito, tanto do titular quanto do dependente, e transporte.',
+                      'Para solicitar é necessário escolher um beneficiário.',
                   fontSize: 16,
                   height: 1.5,
                 ),
                 SizedBox(height: 20),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      height: 1.5,
+                SelectAppComponent(
+                  primaryColor: AppColor.pantone382C,
+                  enabledBorder: true,
+                  centerSelectedValue: false,
+                  labelText: 'Beneficiário',
+                  menuItemData: [
+                    MenuItemData(
+                      label: 'Italo Rodrigues dos Santos',
+                      value: '1',
                     ),
-                    children: [
-                      TextSpan(text: 'Para os casos de reembolso por '),
-                      TextSpan(
-                        text: 'coparticipação indevida ou transporte',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text: ', é preciso realizar um contato prévio e ',
-                      ),
-                      TextSpan(
-                        text:
-                            'informar o protocolo quando for solicitar o reembolso',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(text: '.'),
-                    ],
-                  ),
+                    MenuItemData(label: 'Maria da silva', value: '2'),
+                  ],
+                  onChanged: (value) {
+                    ctrl.beneficiario.text = value;
+                  },
                 ),
-                SizedBox(height: 20),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      height: 1.5,
-                    ),
-                    children: [
-                      TextSpan(text: 'Acesse o '),
-                      TextSpan(
-                        text: 'Fale Conosco',
-                        style: TextStyle(
-                          color: AppColor.pantone348C,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextSpan(
-                        text:
-                            ', preencha o formulário, selecionando o "Assunto" como "Outros", anexe uma evidência e faça o envio da mensagem. Em alguns dias, acesse sua caixa de e-mails para ',
-                      ),
-                      TextSpan(
-                        text: 'conseguir o protocolo do seu contato prévio',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      TextSpan(
-                        text:
-                            ', ele será necessário para realizar a solicitação.',
-                      ),
-                    ],
-                  ),
+                SizedBox(height: 8),
+                InputTextAppComponent(
+                  textEditingController: ctrl.altura,
+                  textInputAction: TextInputAction.next,
+                  textInputType: TextInputType.number,
+                  labelText: "Altura",
+                  hintText: "00.00",
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    AlturaInputFormatter(),
+                  ],
                 ),
-                SizedBox(height: 20),
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.black,
-                      height: 1.5,
-                    ),
-                    children: [
-                      TextSpan(
-                        text:
-                            'Em caso de dúvidas, entre em contato com o atendimento ao cliente através do ',
-                      ),
-                      TextSpan(
-                        text: 'Fale Conosco',
-                        style: TextStyle(
-                          color: AppColor.pantone348C,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextSpan(text: ' ou pelo SAC 0800 725 1200.'),
-                    ],
-                  ),
+                SizedBox(height: 8),
+                InputTextAppComponent(
+                  textEditingController: ctrl.peso,
+                  textInputAction: TextInputAction.next,
+                  textInputType: TextInputType.number,
+                  labelText: "Peso",
+                  hintText: "00.00",
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    PesoInputFormatter(),
+                  ],
                 ),
                 SizedBox(height: 100),
               ],

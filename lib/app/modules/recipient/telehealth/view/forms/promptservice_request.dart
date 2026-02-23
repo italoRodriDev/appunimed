@@ -1,5 +1,7 @@
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/controller/promptservice.controller.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/forms/promptservice/step_1.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/forms/promptservice/step_2.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/forms/promptservice/step_4.dart';
 import 'package:app_colabora_unimedjp/app/services/config.service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:loading_overlay/loading_overlay.dart';
 import '../../../../utils/components/form_swipe.dart';
 import '../../../../utils/components/progress_app.component.dart';
 import '../../../../utils/components/toolbars/toolbar_app.component.dart';
+import 'promptservice/step_3.dart';
 
 class PromptServiceRequestPage extends StatelessWidget {
   final PromptServiceController ctrl = Get.put(PromptServiceController());
@@ -38,7 +41,12 @@ class PromptServiceRequestPage extends StatelessWidget {
           child: SmartLiquidForm(
             liquidSwipeController: _controller,
             labelButtonFinish: 'Enviar solicitação',
-            steps: [Step1FormPromptService()],
+            steps: [
+              Step1FormPromptService(),
+              Step2FormPromptService(),
+              Step3FormPromptService(),
+              Step4FormPromptService(),
+            ],
             onFinish: () {},
           ),
         ),

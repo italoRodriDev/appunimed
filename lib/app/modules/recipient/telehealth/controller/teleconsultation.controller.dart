@@ -1,3 +1,8 @@
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class TeleConsultationController extends GetxController {}
+class TeleConsultationController extends GetxController {
+  TextEditingController beneficiario = TextEditingController();
+  TextEditingController altura = TextEditingController();
+  TextEditingController peso = TextEditingController();
+}

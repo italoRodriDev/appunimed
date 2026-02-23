@@ -1,3 +1,5 @@
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/forms/teleconsultation/step_2.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/forms/teleconsultation/step_4.dart';
 import 'package:app_colabora_unimedjp/app/services/config.service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import '../../../../utils/components/progress_app.component.dart';
 import '../../../../utils/components/toolbars/toolbar_app.component.dart';
 import '../../controller/teleconsultation.controller.dart';
 import 'teleconsultation/step_1.dart';
+import 'teleconsultation/step_3.dart';
 
 class TeleConsultationRequestPage extends StatelessWidget {
   final TeleConsultationController ctrl = Get.put(TeleConsultationController());
@@ -38,7 +41,12 @@ class TeleConsultationRequestPage extends StatelessWidget {
           child: SmartLiquidForm(
             liquidSwipeController: _controller,
             labelButtonFinish: 'Enviar solicitação',
-            steps: [Step1FormTeleConsultation()],
+            steps: [
+              Step1FormTeleConsultation(),
+              Step2FormTeleConsultation(),
+              Step3FormTeleConsultation(),
+              Step4FormTeleConsultation(),
+            ],
             onFinish: () {},
           ),
         ),
