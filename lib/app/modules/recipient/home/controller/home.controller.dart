@@ -30,16 +30,22 @@ class HomeController extends GetxController {
       RoutesApp.FINANCES,
     ),
     CardModel(
-      Icons.verified_user_outlined,
-      'Autorizações',
-      'Solicite e acompanhe \nsuas autorizações.',
-      RoutesApp.INEXISTENTE,
-    ),
-    CardModel(
       Icons.video_camera_front_outlined,
       'Telessaúde',
       'Realize consultas \nmédicas online.',
       RoutesApp.TELEHEALTH,
+    ),
+    CardModel(
+      Icons.calendar_month_outlined,
+      'Agendamentos',
+      'Agende consultas e serviços em nossas unidades online.',
+      RoutesApp.SCHEDULING,
+    ),
+    CardModel(
+      Icons.verified_user_outlined,
+      'Autorizações',
+      'Solicite e acompanhe \nsuas autorizações.',
+      RoutesApp.INEXISTENTE,
     ),
   ];
 

@@ -14,6 +14,8 @@ import 'package:app_colabora_unimedjp/app/modules/recipient/home/bindings/home.b
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/home.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/manuals/bindings/manuals.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/myplan/bindings/myplan.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/scheduling/bindings/scheduling.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/scheduling/view/Schedule.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/promptservice.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/teleconsultation.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/components/card_telehealth_consultantion.component.dart';
@@ -111,6 +113,13 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: timeAnimation),
       binding: TeleHealthBinding(),
       bindings: [PromptServiceBinding(), TeleConsultationBinding()],
+    ),
+    GetPage(
+      name: RoutesApp.SCHEDULING,
+      page: () => SchedulingPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: SchedulingBinding(),
     ),
     GetPage(
       name: RoutesApp.FAQ,

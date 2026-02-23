@@ -88,8 +88,10 @@ class _RadioGroupState extends State<RadioGroupApp> {
                 ),
                 const SizedBox(width: 8),
                 TextAppComponent(
-                  value: option,
-                  fontSize: 16,
+                  value: option.length > 30
+                      ? '${option.substring(0, 30)}...'
+                      : option,
+                  fontSize: 14,
                   fontWeight: FontWeight.w600,
                   color: AppColor.pantone7722C,
                 ),
