@@ -1,38 +1,43 @@
 import 'package:app_colabora_unimedjp/app/data/models/authentication_response.model.dart';
 import 'package:app_colabora_unimedjp/app/data/provider/sqlite.provider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../../routers/app_routers.dart';
-import '../view/home.dart';
+import '../view/components/list_menu_home.component.dart';
 
 class HomeController extends GetxController {
   ValueNotifier<AuthResponseModel?> dataProfile = ValueNotifier(null);
-
-  final itemsTopMenu = [
+  final RxBool stopHomeAnimations = false.obs;
+  final itemsMenu = [
     CardModel(
       Icons.badge_outlined,
       'Carteira',
-      'Visualize as informações \nda sua carteirinha do plano.',
+      'Visualize as informações da sua carteirinha do plano.',
       RoutesApp.WALLET,
     ),
     CardModel(
       Icons.assignment_outlined,
       'Meu Plano',
-      'Consulte a cobertura \ne detalhes do seu plano.',
+      'Consulte a cobertura e detalhes do seu plano.',
       RoutesApp.MYPLAN,
     ),
     CardModel(
       Icons.account_balance_wallet_outlined,
       'Financeiro',
-      'Boletos, reembolsos \ne histórico financeiro.',
+      'Boletos, reembolsos e histórico financeiro.',
       RoutesApp.FINANCES,
+    ),
+    CardModel(
+      Icons.verified_user_outlined,
+      'Autorizações',
+      'Solicite e acompanhe suas autorizações.',
+      RoutesApp.AUTHORIZATION,
     ),
     CardModel(
       Icons.video_camera_front_outlined,
       'Telessaúde',
-      'Realize consultas \nmédicas online.',
+      'Realize consultas médicas online.',
       RoutesApp.TELEHEALTH,
     ),
     CardModel(
@@ -41,57 +46,68 @@ class HomeController extends GetxController {
       'Agende consultas e serviços em nossas unidades online.',
       RoutesApp.SCHEDULING,
     ),
-    CardModel(
-      Icons.verified_user_outlined,
-      'Autorizações',
-      'Solicite e acompanhe \nsuas autorizações.',
-      RoutesApp.INEXISTENTE,
-    ),
-  ];
-
-  final itemsBottomMenu = [
-    CardModel(
-      Icons.person_outline,
-      'Perfil',
-      'Gerencie suas \ninformações pessoais.',
-      RoutesApp.INEXISTENTE,
-    ),
 
     CardModel(
-      Icons.notifications_active_outlined,
-      'Notificações',
-      'Acompanhe avisos\n e atualizações.',
-      RoutesApp.INEXISTENTE,
+      Icons.medical_information_outlined,
+      'Resultado de exames',
+      'Consulte resultados de exames da rede própria.',
+      RoutesApp.EXAM_RESULTS,
+    ),
+    CardModel(
+      Icons.medical_information_outlined,
+      'Guia Médico',
+      'Consulte nosso guia local e nacional.',
+      RoutesApp.EXAM_RESULTS,
     ),
     CardModel(
       Icons.manage_accounts_outlined,
-      'Atualização',
-      'Atualize seus \ndados cadastrais.',
+      'Atualização cadastral',
+      'Atualize seus dados cadastrais.',
       RoutesApp.INEXISTENTE,
     ),
     CardModel(
-      Icons.headset_mic_outlined,
-      'Fale Conosco',
-      'Envie dúvidas ou\n fale com a central.',
+      Icons.document_scanner_outlined,
+      'Declaração e Extratos',
+      'Emita os documentos em PDF.',
       RoutesApp.INEXISTENTE,
     ),
     CardModel(
       Icons.book_outlined,
       'Manuais',
-      'Acesse os manuais\n do usuário.',
+      'Acesse os manuais do usuário.',
       RoutesApp.MANUALS,
     ),
-
+    CardModel(
+      Icons.headset_mic_outlined,
+      'Fale Conosco',
+      'Envie dúvidas ou fale com a central.',
+      RoutesApp.INEXISTENTE,
+    ),
     CardModel(
       Icons.help_center_outlined,
-      'FAQ',
-      'Consulte dúvidas\n frequentes.',
+      'FAQ - Dúvidas Frêquentes',
+      'Consulte dúvidas frequentes.',
       RoutesApp.FAQ,
+    ),
+    CardModel(
+      Icons.person_outline,
+      'Perfil',
+      'Gerencie suas informações pessoais.',
+      RoutesApp.INEXISTENTE,
+    ),
+    CardModel(
+      Icons.notifications_active_outlined,
+      'Notificações',
+      'Acompanhe avisos e atualizações.',
+      RoutesApp.INEXISTENTE,
     ),
   ];
 
   @override
   void onInit() {
+    Future.delayed(const Duration(seconds: 2), () {
+      stopHomeAnimations.value = true;
+    });
     getDataProfile();
     super.onInit();
   }

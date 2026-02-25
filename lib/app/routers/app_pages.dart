@@ -4,6 +4,11 @@ import 'package:app_colabora_unimedjp/app/modules/auth/permissions/bindings/perm
 import 'package:app_colabora_unimedjp/app/modules/auth/permissions/view/permissions.dart';
 import 'package:app_colabora_unimedjp/app/modules/auth/recovery-password/view/recovery_password.dart';
 import 'package:app_colabora_unimedjp/app/modules/auth/splash/bindings/splash.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/authorization/binding/autorization.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/authorization/view/authorization.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/chat/bindings/chat.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/digitalinvoices/bindings/digitalinvoices.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/digitalinvoices/view/digitalinvoice.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/binding/faq.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/view/faq.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/finances/bindings/assistence_reimbursement.bind.dart';
@@ -16,10 +21,13 @@ import 'package:app_colabora_unimedjp/app/modules/recipient/manuals/bindings/man
 import 'package:app_colabora_unimedjp/app/modules/recipient/myplan/bindings/myplan.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/scheduling/bindings/scheduling.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/scheduling/view/Schedule.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/slips/bindings/slips.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/slips/view/myslips.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/promptservice.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/teleconsultation.bind.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/components/card_telehealth_consultantion.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/telehealth.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/trackrefund/bindings/trackrefund.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/trackrefund/view/trackrefund.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/bindings/wallet.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/preview_wallet.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/wallet.dart';
@@ -29,6 +37,9 @@ import 'package:get/get.dart';
 import '../modules/auth/login/view/login.dart';
 import '../modules/auth/recovery-password/bindings/recovery_password.bind.dart';
 import '../modules/auth/splash/view/splash.dart';
+import '../modules/recipient/chat/view/chat.dart';
+import '../modules/recipient/examresults/bindings/examresults.bind.dart';
+import '../modules/recipient/examresults/view/examresults.dart';
 import '../modules/recipient/manuals/view/manuals.dart';
 import '../modules/recipient/myplan/view/myplan.dart';
 import '../modules/recipient/telehealth/bindings/telehealth.bind.dart';
@@ -120,6 +131,48 @@ class AppPages {
       transition: animation,
       transitionDuration: const Duration(milliseconds: timeAnimation),
       binding: SchedulingBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.DIGITAL_INVOICES,
+      page: () => DigitalInvoicePage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: DigitalInvoicesBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.TRACK_REFUND,
+      page: () => TrackRefundPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: TrackRefundBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.EXAM_RESULTS,
+      page: () => ExamResultsPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: ExamResultsBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.SLIPS,
+      page: () => MySlipsPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: SlipsBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.AUTHORIZATION,
+      page: () => AuthorizationPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: AuthorizationBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.CHAT,
+      page: () => ChatPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: ChatBinding(),
     ),
     GetPage(
       name: RoutesApp.FAQ,

@@ -1,4 +1,3 @@
-import 'package:app_colabora_unimedjp/app/data/models/found.model.dart';
 import 'package:app_colabora_unimedjp/app/data/models/telehealth.model.dart';
 import 'package:flutter/material.dart';
 

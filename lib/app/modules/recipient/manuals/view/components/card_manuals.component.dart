@@ -2,6 +2,7 @@ import 'package:app_colabora_unimedjp/app/data/models/faq.model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../config/colors/colors.dart';
+import '../../../../utils/components/preview_pdf.component.dart';
 import '../../../../utils/components/text_app.component.dart';
 
 class CardManualsComponent extends StatefulWidget {
@@ -14,8 +15,6 @@ class CardManualsComponent extends StatefulWidget {
 }
 
 class _CardManualsComponentState extends State<CardManualsComponent> {
-  bool _isExpanded = false;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -27,9 +26,7 @@ class _CardManualsComponentState extends State<CardManualsComponent> {
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
-            setState(() {
-              _isExpanded = !_isExpanded;
-            });
+            showPDF(context);
           },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,9 +55,7 @@ class _CardManualsComponentState extends State<CardManualsComponent> {
                         ),
                       ),
                       Icon(
-                        _isExpanded
-                            ? Icons.keyboard_arrow_up
-                            : Icons.keyboard_arrow_down,
+                        Icons.download,
                         color: AppColor.pantone348C,
                         size: 25,
                       ),
@@ -68,24 +63,21 @@ class _CardManualsComponentState extends State<CardManualsComponent> {
                   ),
                 ),
               ),
-              if (_isExpanded) ...[
-                const SizedBox(height: 12),
-                Padding(
-                  padding: EdgeInsetsGeometry.only(
-                    left: 20,
-                    right: 20,
-                    top: 10,
-                    bottom: 20,
-                  ),
-                  child: TextAppComponent(
-                    value: widget.data.description.toString(),
-                    color: AppColor.pantone7722C,
-                    fontSize: 14,
-                  ),
-                ),
-              ],
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  showPDF(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PreviewPDFComponent(
+          title: 'Exame',
+          url: 'https://pdfobject.com/pdf/sample.pdf',
+          isNetwork: true,
         ),
       ),
     );

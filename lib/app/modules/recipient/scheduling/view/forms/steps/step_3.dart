@@ -1,5 +1,4 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
-import 'package:app_colabora_unimedjp/app/modules/utils/components/calendar_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,7 +44,7 @@ class Step3FormShedulingService extends StatelessWidget implements LiquidStep {
                   height: 1.5,
                 ),
                 SizedBox(height: 20),
-                buildConsultantionUnavailable(),
+                buildConsultationUnavailable(),
                 RadioGroupApp(
                   options: [
                     'Aplicação de Medicamento',
@@ -142,7 +141,7 @@ class Step3FormShedulingService extends StatelessWidget implements LiquidStep {
     );
   }
 
-  Widget buildConsultantionUnavailable() {
+  Widget buildConsultationUnavailable() {
     return Column(
       children: [
         Container(

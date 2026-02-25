@@ -51,7 +51,7 @@ class ManualsPage extends GetView<ManualsController> {
               ),
             ),
             Divider(height: 0, color: AppColor.neutral2),
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 5; i++)
               CardManualsComponent(
                 data: FaqModel(
                   id: 0,

@@ -1,13 +1,13 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/controller/home.controller.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/components/card_bottom_menu.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/components/card_top_menu.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/avatar_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/carrousel_image_app.component.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_minimizer_plus/flutter_app_minimizer_plus.dart';
 import 'package:get/get.dart';
+
+import 'components/list_menu_home.component.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
@@ -27,7 +27,6 @@ class HomePage extends GetView<HomeController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                /// Header
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: ValueListenableBuilder(
@@ -64,7 +63,6 @@ class HomePage extends GetView<HomeController> {
                   ),
                 ),
 
-                /// Carousel
                 CarrouselImageAppComponent(
                   imageUrls: [
                     'https://i.ytimg.com/vi/u2X0bQgwfJo/maxresdefault.jpg',
@@ -74,55 +72,11 @@ class HomePage extends GetView<HomeController> {
                   onClick: (index) {},
                 ),
 
-                /// Acesso rápido
                 _sectionTitle('Serviços'),
 
-                SizedBox(
-                  height: 150,
-                  child: ListView.builder(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    scrollDirection: Axis.horizontal,
-                    itemCount: controller.itemsTopMenu.length,
-                    itemBuilder: (context, index) {
-                      final item = controller.itemsTopMenu[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(right: 10),
-                        child: CardTopMenuHome(
-                          item: item,
-                          onPressed: () {
-                            Get.toNamed(item.router);
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                ),
-
-                SizedBox(height: 8),
-
-                /// Serviços
-                _sectionTitle('Outros'),
-
-                GridView.builder(
-                  padding: const EdgeInsets.all(10),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.itemsBottomMenu.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    childAspectRatio: 0.85,
-                  ),
-                  itemBuilder: (context, index) {
-                    final item = controller.itemsBottomMenu[index];
-                    return CardBottomMenuHome(
-                      item: item,
-                      onPressed: () {
-                        Get.toNamed(item.router);
-                      },
-                    );
-                  },
+                Padding(
+                  padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                  child: AnimatedCardsListHome(controller: controller),
                 ),
               ],
             ),
@@ -134,25 +88,16 @@ class HomePage extends GetView<HomeController> {
 
   Widget _sectionTitle(String title) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(left: 35, bottom: 10, top: 10),
       child: Align(
         alignment: Alignment.centerLeft,
         child: TextAppComponent(
           value: title,
           fontWeight: FontWeight.w600,
-          fontSize: 18,
+          fontSize: 24,
           color: AppColor.pantone7722C,
         ),
       ),
     );
   }
-}
-
-class CardModel {
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final String router;
-
-  CardModel(this.icon, this.title, this.subtitle, this.router);
 }
