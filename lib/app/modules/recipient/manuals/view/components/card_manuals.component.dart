@@ -75,7 +75,7 @@ class _CardManualsComponentState extends State<CardManualsComponent> {
       context,
       MaterialPageRoute(
         builder: (context) => PreviewPDFComponent(
-          title: 'Exame',
+          title: 'Manual',
           url: 'https://pdfobject.com/pdf/sample.pdf',
           isNetwork: true,
         ),

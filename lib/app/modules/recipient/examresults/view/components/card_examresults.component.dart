@@ -20,10 +20,10 @@ class CardExamResultsComponent extends StatefulWidget {
 
   @override
   State<CardExamResultsComponent> createState() =>
-      _CardSlipFinanceComponentState();
+      _CardExamResultsComponentState();
 }
 
-class _CardSlipFinanceComponentState extends State<CardExamResultsComponent> {
+class _CardExamResultsComponentState extends State<CardExamResultsComponent> {
   bool _isExpanded = true;
 
   @override

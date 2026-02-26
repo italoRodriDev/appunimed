@@ -81,7 +81,7 @@ class AuthorizationPage extends GetView<AuthorizationController> {
                         substringLength: 12,
                         itemsData: controller.listAuthorization.value
                             .map(
-                              (el) => MenuItemData(
+                              (el) => MenuItemFilterData(
                                 label: el.beneficiario.toString().toUpperCase(),
                                 value: el.beneficiario.toString().toUpperCase(),
                               ),
@@ -99,7 +99,7 @@ class AuthorizationPage extends GetView<AuthorizationController> {
                         substringLength: 12,
                         itemsData: controller.listAuthorization.value
                             .map(
-                              (el) => MenuItemData(
+                              (el) => MenuItemFilterData(
                                 label: el.status.toString(),
                                 value: el.status.toString(),
                               ),

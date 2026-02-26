@@ -57,19 +57,19 @@ class HomeController extends GetxController {
       Icons.medical_information_outlined,
       'Guia Médico',
       'Consulte nosso guia local e nacional.',
-      RoutesApp.EXAM_RESULTS,
+      RoutesApp.MEDICAL_GUIDE,
     ),
     CardModel(
       Icons.manage_accounts_outlined,
       'Atualização cadastral',
       'Atualize seus dados cadastrais.',
-      RoutesApp.INEXISTENTE,
+      RoutesApp.UPDATE_ACCOUNT,
     ),
     CardModel(
       Icons.document_scanner_outlined,
       'Declaração e Extratos',
       'Emita os documentos em PDF.',
-      RoutesApp.INEXISTENTE,
+      RoutesApp.DECLARATIONS,
     ),
     CardModel(
       Icons.book_outlined,
@@ -81,25 +81,13 @@ class HomeController extends GetxController {
       Icons.headset_mic_outlined,
       'Fale Conosco',
       'Envie dúvidas ou fale com a central.',
-      RoutesApp.INEXISTENTE,
+      RoutesApp.TALK_TO_US,
     ),
     CardModel(
       Icons.help_center_outlined,
       'FAQ - Dúvidas Frêquentes',
       'Consulte dúvidas frequentes.',
       RoutesApp.FAQ,
-    ),
-    CardModel(
-      Icons.person_outline,
-      'Perfil',
-      'Gerencie suas informações pessoais.',
-      RoutesApp.INEXISTENTE,
-    ),
-    CardModel(
-      Icons.notifications_active_outlined,
-      'Notificações',
-      'Acompanhe avisos e atualizações.',
-      RoutesApp.INEXISTENTE,
     ),
   ];
 

@@ -124,10 +124,8 @@ class _CardAuthorizationComponentState
                   ],
                 ),
               ),
-
-              // DIVISOR
               Container(
-                height: 160, // Altura fixa para manter o alinhamento
+                height: 160, 
                 width: 1,
                 margin: const EdgeInsets.symmetric(horizontal: 12),
                 color: (style['fontColor'] as Color).withOpacity(0.3),

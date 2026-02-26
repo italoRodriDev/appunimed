@@ -121,7 +121,7 @@ class _TextTabsState extends State<TextTabs> {
           (label.length > 17) ? ('${label.substring(0, 17)}...') : label,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: isActive ? AppColor.background : AppColor.tertiary,
+            color: isActive ? AppColor.background : AppColor.pantone7722C,
             fontSize: widget.fontSize ?? 15,
             fontWeight: FontWeight.w600,
           ),

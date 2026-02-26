@@ -267,7 +267,7 @@ class _InputTextComponentState extends State<InputTextAppComponent> {
               hintStyle: TextStyle(
                 color: widget.enabled == true 
                 ? Colors.grey.withOpacity(.6)
-                : AppColor.primary
+                : AppColor.neutral4
               ),
               labelText: widget.showLabelAboveTextField
                   ? null

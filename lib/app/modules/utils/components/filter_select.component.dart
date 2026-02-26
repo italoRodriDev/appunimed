@@ -7,7 +7,7 @@ import '../../../config/colors/colors.dart';
 class FilterSelectComponent<T> extends StatefulWidget {
   final String label;
   final int substringLength;
-  final List<MenuItemData<T>> itemsData;
+  final List<MenuItemFilterData<T>> itemsData;
   final ValueChanged<String> onChanged;
 
   const FilterSelectComponent({
@@ -213,9 +213,9 @@ class _FilterModalContentState extends State<_FilterModalContent> {
   }
 }
 
-class MenuItemData<T> {
+class MenuItemFilterData<T> {
   final String label;
   final T value;
 
-  const MenuItemData({required this.label, required this.value});
+  const MenuItemFilterData({required this.label, required this.value});
 }

@@ -50,8 +50,8 @@ class HomePage extends GetView<HomeController> {
                                   fontSize: 22,
                                 ),
                                 TextAppComponent(
-                                  value: 'Ver meu plano',
-                                  color: AppColor.pantone382C,
+                                  value: 'Ver meu perfil',
+                                  color: AppColor.pantone348C,
                                 ),
                               ],
                             ),

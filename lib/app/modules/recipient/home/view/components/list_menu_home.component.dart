@@ -21,7 +21,7 @@ class _AnimatedCardsListState extends State<AnimatedCardsListHome>
 
   final double cardHeight = 60;
   final double spacing = 50;
-  int cardCount = 15;
+  int cardCount = 13;
 
   @override
   void initState() {

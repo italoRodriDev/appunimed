@@ -7,6 +7,7 @@ import 'package:app_colabora_unimedjp/app/modules/auth/splash/bindings/splash.bi
 import 'package:app_colabora_unimedjp/app/modules/recipient/authorization/binding/autorization.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/authorization/view/authorization.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/chat/bindings/chat.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/declarations/bindings/declarations.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/digitalinvoices/bindings/digitalinvoices.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/digitalinvoices/view/digitalinvoice.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/faq/binding/faq.bind.dart';
@@ -18,16 +19,23 @@ import 'package:app_colabora_unimedjp/app/modules/recipient/finances/view/financ
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/bindings/home.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/home/view/home.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/manuals/bindings/manuals.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/medicalguide/bindings/medicalguide.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/myplan/bindings/myplan.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/protocols/bindings/protocols.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/protocols/view/protocols.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/scheduling/bindings/scheduling.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/scheduling/view/Schedule.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/slips/bindings/slips.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/slips/view/myslips.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/talktous/bindings/talktous.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/talktous/view/talktous.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/promptservice.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/bindings/teleconsultation.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/telehealth/view/telehealth.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/trackrefund/bindings/trackrefund.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/trackrefund/view/trackrefund.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/updateaccount/bindings/update_account.bind.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/updateaccount/view/update_account.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/bindings/wallet.bind.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/preview_wallet.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/wallet/view/wallet.dart';
@@ -38,9 +46,11 @@ import '../modules/auth/login/view/login.dart';
 import '../modules/auth/recovery-password/bindings/recovery_password.bind.dart';
 import '../modules/auth/splash/view/splash.dart';
 import '../modules/recipient/chat/view/chat.dart';
+import '../modules/recipient/declarations/view/declarations.dart';
 import '../modules/recipient/examresults/bindings/examresults.bind.dart';
 import '../modules/recipient/examresults/view/examresults.dart';
 import '../modules/recipient/manuals/view/manuals.dart';
+import '../modules/recipient/medicalguide/view/medicalguide.dart';
 import '../modules/recipient/myplan/view/myplan.dart';
 import '../modules/recipient/telehealth/bindings/telehealth.bind.dart';
 import '../modules/recipient/wallet/bindings/preview_wallet.bind.dart';
@@ -168,6 +178,13 @@ class AppPages {
       binding: AuthorizationBinding(),
     ),
     GetPage(
+      name: RoutesApp.MEDICAL_GUIDE,
+      page: () => MedicalGuidePage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: MedicalGuideBinding(),
+    ),
+    GetPage(
       name: RoutesApp.CHAT,
       page: () => ChatPage(),
       transition: animation,
@@ -187,6 +204,34 @@ class AppPages {
       transition: animation,
       transitionDuration: const Duration(milliseconds: timeAnimation),
       binding: ManualsBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.UPDATE_ACCOUNT,
+      page: () => UpdateAccountPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: UpdateAccountBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.DECLARATIONS,
+      page: () => DeclarationsPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: DeclarationsBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.TALK_TO_US,
+      page: () => TalkToUsPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: TalkToUsBinding(),
+    ),
+    GetPage(
+      name: RoutesApp.PROTOCOLS,
+      page: () => ProtocolsPage(),
+      transition: animation,
+      transitionDuration: const Duration(milliseconds: timeAnimation),
+      binding: ProtocolsBinding(),
     ),
     GetPage(
       name: RoutesApp.INEXISTENTE,

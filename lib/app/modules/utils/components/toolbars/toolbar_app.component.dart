@@ -50,9 +50,17 @@ class _ToolbarAppComponentState extends State<ToolbarAppComponent>
                           Get.back();
                         }
                       },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
-                        color: widget.colorText ?? AppColor.pantone348C,
+                      icon: Row(
+                        children: [
+                          Spacer(),
+                          Icon(
+                            Icons.arrow_back_ios,
+                            color: widget.colorText ?? AppColor.pantone348C,
+                          ),
+                          SizedBox(width: 2),
+                          Text('Voltar', style: TextStyle(color: widget.colorText ?? AppColor.pantone348C)),
+                          Spacer(),
+                        ],
                       ),
                     )
                   : const SizedBox.shrink(),

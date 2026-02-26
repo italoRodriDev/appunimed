@@ -1,5 +1,5 @@
 import 'package:app_colabora_unimedjp/app/data/models/examresult.model.dart';
-import 'package:app_colabora_unimedjp/app/modules/recipient/slips/controller/myslips.controller.dart';
+import 'package:app_colabora_unimedjp/app/modules/recipient/examresults/controller/examresults.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +10,7 @@ import '../../../utils/components/toolbars/toolbar_app.component.dart';
 import '../../../utils/extensions/date_time_extensions.dart';
 import 'components/card_examresults.component.dart';
 
-class ExamResultsPage extends GetView<MySlipsController> {
+class ExamResultsPage extends GetView<ExamResultsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

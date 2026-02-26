@@ -3,6 +3,7 @@ import 'package:app_colabora_unimedjp/app/data/models/authorization.model.dart';
 import 'package:app_colabora_unimedjp/app/modules/recipient/chat/view/chat.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/text_app.component.dart';
 import 'package:app_colabora_unimedjp/app/routers/app_routers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -138,7 +139,7 @@ class DetailAuthorizationCanceledModal extends StatelessWidget {
                           ),
                           SizedBox(width: 8),
                           Icon(
-                            Icons.chat_bubble_outline,
+                            CupertinoIcons.captions_bubble,
                             color: AppColor.pantone7722C,
                           ),
                         ],

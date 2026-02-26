@@ -1,5 +1,6 @@
 import 'package:app_colabora_unimedjp/app/config/colors/colors.dart';
 import 'package:app_colabora_unimedjp/app/modules/utils/components/inputs/input_app.component.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -62,16 +63,18 @@ class ChatPage extends GetView<ChatController> {
       ),
       child: Row(
         children: [
+          Tooltip(message: 'Anexar arquivos',
+          child: 
           CircleAvatar(
             radius: 24,
             backgroundColor: AppColor.pantone7722C,
             child: IconButton(
-              icon: const Icon(Icons.upload, color: Colors.white),
+              icon: const Icon(CupertinoIcons.paperclip, color: Colors.white),
               onPressed: () {
                 controller.showAlertOptionsSelectFiles(context);
               },
             ),
-          ),
+          )),
           SizedBox(width: 8),
           Expanded(
             child: InputTextAppComponent(
