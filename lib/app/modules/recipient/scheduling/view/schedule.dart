@@ -116,7 +116,7 @@ class SchedulingPage extends GetView<TeleHealthController> {
         SizedBox(height: 8),
 
         Divider(height: 0, color: AppColor.neutral2),
-        for (var i = 0; i < 5; i++)
+        for (var i = 0; i < 3; i++)
           CardTeleHealthConsultantionComponent(
             data: TeleHealtModel(
               id: 0,
